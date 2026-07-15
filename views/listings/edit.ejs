@@ -3,9 +3,15 @@
     <div class="row mt-3">
         <div class="col-8 offset-2">
             <h3>Edit your listing</h3>
-            <form action="/listings/<%= listing._id %>?_method=PUT" method="POST" novalidate class="needs-validation">
+            <form 
+                action="/listings/<%= listing._id %>?_method=PUT" 
+                method="POST" 
+                novalidate 
+                class="needs-validation"
+                enctype="multipart/form-data"
+            >
                 <div class="mb-3">
-                    <label for="image" class="form-label">Title</label>
+                    <label for="title" class="form-label">Title</label>
                     <input 
                         type="text" 
                         name="listing[title]" 
@@ -17,19 +23,28 @@
                 </div>
                 <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
-                    <textarea name="listing[description]" id="description" class="form-control" required><%= listing.description %></textarea>
+                    <textarea 
+                        name="listing[description]" 
+                        id="description" 
+                        class="form-control" 
+                        required><%= listing.description %>
+                    </textarea>
                     <div class="invalid-feedback">Please enter a short description</div>
                 </div>
+
                 <div class="mb-3">
-                    <label for="image" class="form-label">Image url</label>
+                    Original Listing Image <br>
+                    <img src="<%= originalImageUrl %>" alt="image_preview">
+                </div>
+
+                <div class="mb-3">
+                    <label for="image" class="form-label">Upload New Image</label>
                     <input 
-                        type="text" 
-                        name="listing[image]" 
-                        value="<%= listing.image %>" 
+                        type="file" 
+                        name="listing[image]"
+                        id="image"
                         class="form-control"
-                        required
                     />
-                    <div class="invalid-feedback">Please enter a valid image link</div>
                 </div> 
                 <div class="row">
                     <div class="mb-3 col-md-4">
